@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    margin: 0;
+    background: #071b25;
+    color: #eafcff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .clock {
+    padding: 18px 8px;
+    border: 1px solid #00d9e8;
+    border-radius: 12px;
+    background: #0a2632;
+  }
+  .label {
+    color: #00d9e8;
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+  #time {
+    margin: 10px 0;
+    font-size: clamp(32px, 8vw, 58px);
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+  }
+  #date {
+    color: #b7d4dc;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="clock">
+    <div class="label">WAKTU INDONESIA BARAT</div>
+    <div id="time">00:00:00</div>
+    <div id="date">Memuat tanggal...</div>
+  </div>
+<script>
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("time").textContent =
+      new Intl.DateTimeFormat("id-ID", {
+        timeZone: "Asia/Jakarta",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(now);
+    document.getElementById("date").textContent =
+      new Intl.DateTimeFormat("id-ID", {
+        timeZone: "Asia/Jakarta",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(now);
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
